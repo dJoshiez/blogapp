@@ -4,22 +4,22 @@ import { Add } from "@mui/icons-material"
 import { useNavigate, useParams } from 'react-router-dom'
 
 const UpdatePost = () => {
-  const [blog, setBlog] = useState({title: "", content: "", image: ""})
-  const {id} = useParams()
+  const [blog, setBlog] = useState({ title: "", content: "", image: "" })
+  const { id } = useParams()
   const navigator = useNavigate()
 
-  useEffect(()=>{
+  useEffect(() => {
     const fetchSingleBlog = async () => {
-      const res = await fetch("https://blogapp-l202.onrender.com/api/blog/"+id, {
+      const res = await fetch("https://blogapp-l202.onrender.com/api/blog/" + id, {
         method: "GET",
         headers: {
           token: localStorage.getItem("token")
         }
       })
       const data = await res.json()
-      if(res.ok){
+      if (res.ok) {
         setBlog(data)
-      }else{
+      } else {
         console.log(data);
       }
     }
@@ -29,12 +29,12 @@ const UpdatePost = () => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setBlog({...blog, [name]: value})
-  } 
+    setBlog({ ...blog, [name]: value })
+  }
 
   const handleSubmit = async () => {
     console.log(blog);
-    const res = await fetch("http://localhost:7000/api/blog/update/"+id, {
+    const res = await fetch("https://blogapp-l202.onrender.com/api/blog/update/" + id, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -43,10 +43,10 @@ const UpdatePost = () => {
       body: JSON.stringify(blog)
     })
     const data = await res.json()
-    if(res.ok){
+    if (res.ok) {
       alert("blog updated")
       navigator("/")
-    }else{
+    } else {
       console.log(data);
     }
   }
