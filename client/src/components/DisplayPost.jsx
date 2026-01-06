@@ -12,7 +12,7 @@ const DisplayPost = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch("http://localhost:7000/api/blog/");
+        const res = await fetch("https://blogapp-l202.onrender.com/api/blog/");
         const data = await res.json();
 
         if (res.ok) {

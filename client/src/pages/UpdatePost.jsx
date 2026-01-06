@@ -10,7 +10,7 @@ const UpdatePost = () => {
 
   useEffect(()=>{
     const fetchSingleBlog = async () => {
-      const res = await fetch("http://localhost:7000/api/blog/"+id, {
+      const res = await fetch("https://blogapp-l202.onrender.com/api/blog/"+id, {
         method: "GET",
         headers: {
           token: localStorage.getItem("token")
